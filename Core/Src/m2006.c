@@ -168,7 +168,7 @@ void go_bridge(int32_t target, uint16_t time)
 /// @brief 陀螺仪转弯
 /// @param dir
 /// @param angle
-/// @param time
+/// @param speed
 /// @return
 void turn_angle(TurnDirection direction, float degrees, float speeed)
 {
@@ -384,7 +384,7 @@ void go_platform(uint8_t music) // 到平台
 	stop_time(400);
 	go_forward(-3000, 300);
 	stop_time(400);
-	stop1();
+	stop();
 	switch (music)
 	{
 	case 2:

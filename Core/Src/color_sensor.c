@@ -238,28 +238,16 @@ void get_color(void)
         RC.blue_flag = 0;
         RC.black_flag = 0;
     }
-    else if (HSL[0] > 0 && HSL[0] < 50)//黄色
+    else if (HSL[0] > 140 && HSL[0] < 170)//蓝色
     {
         RC.green_flag = 0;
         RC.blue_flag = 1;
         RC.black_flag = 0;
     }
-    else if (HSL[0] > 220 && HSL[0] < 250)//红色
+    else if ((HSL[0] > 180 && HSL[0] < 240) || HSL[0] == 0)//黑色
     {
         RC.green_flag = 0;
         RC.blue_flag = 0;
         RC.black_flag = 1;
     }
-    // else if (HSL[0] > 140 && HSL[0] < 170)//蓝色
-    // {
-    //     RC.green_flag = 0;
-    //     RC.blue_flag = 1;
-    //     RC.black_flag = 0;
-    // }
-    // else if ((HSL[0] > 180 && HSL[0] < 240) || HSL[0] == 0)//黑色
-    // {
-    //     RC.green_flag = 0;
-    //     RC.blue_flag = 0;
-    //     RC.black_flag = 1;
-    // }
 }

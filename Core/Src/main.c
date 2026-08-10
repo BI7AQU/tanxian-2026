@@ -179,15 +179,17 @@ int main(void)
   {
     while (GQ == 0)
       ;
-    PLAY_STATE_READY();
-    all_set();
+    // PLAY_STATE_READY();
+    PLAY_ARKNIGHTS();
+    // all_set();
     HAL_Delay(300);
+
     RGB_RED(9, 0);
     RGB_RED(9, 1);
     // one_to_two2();
     // two_to_three2();
     // three_to_four2();
-    four_to_five2();
+    // four_to_five2();
     five_to_seven2();
     seven_to_eight2();
     eight_to_home();
@@ -201,10 +203,10 @@ int main(void)
     // go_forward(5000, 190);
     // turn_angle(turn_right, 16, 5000); // 岔路口右转
     // tracking(5000, zero, 500);        // 到平台下
-    // while(1)
-    // {
-    //   stop();
-    // }
+    while(1)
+    {
+      stop();
+    }
     // go_forward(5000, 500);            // 到平台中间
     // turn_angle(turn_left, 165, 5000); // 平台左转归正
     // stop_time(3000);
