@@ -1,0 +1,242 @@
+#include "mp3.h"
+
+void MP3_Init(void)
+{
+
+}
+
+/* USER CODE BEGIN 2 */
+
+void PLAY_ARRIVE_ONE(void) // 到达一号平台  111110
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+void PLAY_ARRIVE_TWO(void) // 到达二号平台  111101
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+void PLAY_ARRIVE_THREE(void) // 到达三号平台  111100
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+void PLAY_ARRIVE_FOUR(void) // 到达四号平台  111011
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+void PLAY_ARRIVE_FIVE(void) // 到达五号平台  111010
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+void PLAY_ARRIVE_SIX(void) // 到达六号平台  111001
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+void PLAY_ARRIVE_SEVEN(void) // 到达七号平台 111000
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+void PLAY_ARRIVE_EIGHT(void) // 到达八号平台  110111
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_STATE_READY(void) // 9准备完毕  110110
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_UPRIGHT_SPOTS(void) // 10到达直立景点  110101
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_EAST_MOUNTAIN(void) // 11到达东岳泰山  110100
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_WEST_MOUNTAIN(void) // 12到达西岳华山  110011
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_SOUTH_MOUNTAIN(void) // 13到达南岳衡山  110010
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_NORTH_MOUNTAIN(void) // 14到达北岳恒山  110001
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_CENTRAL_MOUNTAIN(void) // 15到达中岳嵩山  110000
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_ARRIVE_HOME(void) // 16到家了  101111
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+void PLAY_ARKNIGHTS(void) // 17明日方舟  101110
+{
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(J1_GPIO_Port, J1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(K1_GPIO_Port, K1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(L1_GPIO_Port, L1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(N1_GPIO_Port, N1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(I1_GPIO_Port, I1_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(M1_GPIO_Port, M1_Pin, GPIO_PIN_SET);
+	HAL_Delay(100);
+}
+
+/* USER CODE END 2 */

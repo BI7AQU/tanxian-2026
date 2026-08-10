@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "taska.h": "c",
+      "main.h": "c",
+      "gw_color_sensor.h": "c",
+      "stdint.h": "c"
+    }
+  },
+  "extensions": {}
+}
