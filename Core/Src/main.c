@@ -205,6 +205,22 @@ int main(void)
     while(1)
     {
       stop();
+      /* 轮询OLED更新标志（TIM7每100ms置位），在主循环中执行I2C读取避免ISR死锁 */
+      if (oled_update_flag)
+      {
+        oled_update_flag = 0;
+        get_imu_data();
+        OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);   // Yaw角度
+
+        uint8_t hsl[3];
+        if (IIC_Get_HSL(hsl, 3))
+        {
+          OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);           // H值
+          OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);           // S值
+          OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);           // L值
+        }
+        OLED_Refresh();
+      }
     }
     // go_forward(5000, 500);            // 到平台中间
     // turn_angle(turn_left, 165, 5000); // 平台左转归正

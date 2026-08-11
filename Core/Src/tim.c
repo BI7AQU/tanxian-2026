@@ -527,6 +527,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 
 /* USER CODE BEGIN 1 */
 uint32_t time6_count;
+volatile uint8_t oled_update_flag = 0;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM6) // 1ms定时器中断
@@ -540,13 +541,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       time6_count = 0;
     }
   }
-  if (htim->Instance == TIM7) // 100ms定时器中断，用于定时刷新OLED显示陀螺仪角度
+  if (htim->Instance == TIM7) // 100ms定时器中断，仅置标志位通知主循环刷新OLED
   {
-    get_imu_data();
-    // get_color();
-    OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);   // Yaw角度
-    OLED_ShowNum(0, 16, HSL[0], 3, 16, 1);             // 颜色H值
-    OLED_Refresh();
+    oled_update_flag = 1;
   }
 }
 /* USER CODE END 1 */

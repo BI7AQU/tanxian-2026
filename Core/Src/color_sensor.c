@@ -1,9 +1,11 @@
 #include "color_sensor.h"
+
 /* 基本时序操作 */
 static void IIC_Delay(void)
 {
     Delay_us(10); // 根据实际I2C速度调整延时
 }
+
 /* 软件I2C基础函数 */
 void IIC_Start(void)
 {
@@ -72,12 +74,14 @@ unsigned char IIC_RecvByte(void)
 {
     unsigned char dat = 0;
     SDA_HIGH();
-    /* 接收数据前切换SDA为输入模式 */
+
+    /* STM32F4 必须在接收前切换 SDA 为输入模式（开漏输出无法正确读取引脚电平） */
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     GPIO_InitStruct.Pin = SDA_PIN;
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT; // 关键修改！
-    GPIO_InitStruct.Pull = GPIO_PULLUP;     // 保持上拉
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
     HAL_GPIO_Init(SDA_PORT, &GPIO_InitStruct);
+
     for (unsigned char i = 0; i < 8; i++)
     {
         dat <<= 1;
@@ -89,25 +93,14 @@ unsigned char IIC_RecvByte(void)
         IIC_Delay();
     }
 
+    /* 接收完毕后恢复 SDA 为开漏输出模式 */
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
     HAL_GPIO_Init(SDA_PORT, &GPIO_InitStruct);
-    return dat;
-}
-
-/* 应用层函数改写 */
-unsigned char IIC_ReadByte(unsigned char Salve_Address)
-{
-    unsigned char dat;
-
-    IIC_Start();
-    IIC_SendByte(Salve_Address | 0x01); // 读模式
-    dat = IIC_RecvByte();
-    IIC_SendNAck();
-    IIC_Stop();
 
     return dat;
 }
 
+/* 应用层函数 */
 unsigned char IIC_ReadBytes(unsigned char Salve_Address, unsigned char Reg_Address,
                             unsigned char *Result, unsigned char len)
 {
@@ -187,6 +180,7 @@ unsigned char IIC_WriteBytes(unsigned char Salve_Address, unsigned char Reg_Addr
     IIC_Stop();
     return 1;
 }
+
 unsigned char Ping(void)
 {
     unsigned char dat;
@@ -198,12 +192,14 @@ unsigned char Ping(void)
     else
         return 1;
 }
+
 unsigned char IIC_Get_Error(void)
 {
     unsigned char dat;
     IIC_ReadBytes(Color_Adress << 1, Error, &dat, 1);
     return dat;
 }
+
 unsigned char IIC_Get_RGB(unsigned char *Result, unsigned char len)
 {
     if (IIC_ReadBytes(Color_Adress << 1, RGB_Reg, Result, len))
@@ -211,6 +207,7 @@ unsigned char IIC_Get_RGB(unsigned char *Result, unsigned char len)
     else
         return 0;
 }
+
 unsigned char IIC_Get_HSL(unsigned char *Result, unsigned char len)
 {
     if (IIC_ReadBytes(Color_Adress << 1, HSL_Reg, Result, len))
@@ -221,33 +218,45 @@ unsigned char IIC_Get_HSL(unsigned char *Result, unsigned char len)
 
 void get_color(void)
 {
-    uint16_t h_sum = 0;
+    uint16_t h_sum = 0, s_sum = 0, l_sum = 0;
     uint8_t temp_hsl[3];
     for (int i = 0; i < 10; i++)
     {
         if (IIC_Get_HSL(temp_hsl, 3))
         {
             h_sum += temp_hsl[0];
+            s_sum += temp_hsl[1];
+            l_sum += temp_hsl[2];
         }
         HAL_Delay(10);
     }
     HSL[0] = h_sum / 10;
-    if (HSL[0] > 60 && HSL[0] < 210)//绿色
+    HSL[1] = s_sum / 10;
+    HSL[2] = l_sum / 10;
+
+    /* 颜色识别：绿、蓝、黑 */
+    if (HSL[0] > 60 && HSL[0] < 210) // 绿色
     {
         RC.green_flag = 1;
         RC.blue_flag = 0;
         RC.black_flag = 0;
     }
-    else if (HSL[0] > 140 && HSL[0] < 170)//蓝色
+    else if (HSL[0] > 140 && HSL[0] < 170) // 蓝色
     {
         RC.green_flag = 0;
         RC.blue_flag = 1;
         RC.black_flag = 0;
     }
-    else if ((HSL[0] > 180 && HSL[0] < 240) || HSL[0] == 0)//黑色
+    else if ((HSL[0] > 180 && HSL[0] < 240) || HSL[0] == 0) // 黑色
     {
         RC.green_flag = 0;
         RC.blue_flag = 0;
         RC.black_flag = 1;
+    }
+    else
+    {
+        RC.green_flag = 0;
+        RC.blue_flag = 0;
+        RC.black_flag = 0;
     }
 }
