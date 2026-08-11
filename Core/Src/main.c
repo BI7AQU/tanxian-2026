@@ -160,7 +160,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
   HAL_TIM_Base_Start_IT(&htim6); // 开启定时器6
-  // HAL_TIM_Base_Start_IT(&htim7); // 开启定时器7（100ms），用于OLED显示陀螺仪角度
+  // HAL_TIM_Base_Start_IT(&htim7); // 开启定时器7（100ms），用于OLED显示
   // Servo4_SetAngle(0);
   HAL_Delay(2000);
   // Servo4_SetAngle(90);
@@ -181,16 +181,16 @@ int main(void)
   {
     while (GQ == 0)
       ;
-    PLAY_STATE_READY();
-    all_set();
-    // HAL_Delay(3000);
+    // PLAY_STATE_READY();
+    // all_set();
+    HAL_Delay(500);
 
-    RGB_RED(9, 0);
-    RGB_RED(9, 1);
-    one_to_two2();
-    two_to_three2();
-    three_to_four2();
-    four_to_five2();
+    // RGB_RED(9, 0);
+    // RGB_RED(9, 1);
+    // one_to_two2();
+    // two_to_three2();
+    // three_to_four2();
+    // four_to_five2();
     five_to_seven2();
     seven_to_eight2();
     eight_to_home();
@@ -212,31 +212,31 @@ int main(void)
       // {
       //   stop();
         
-      //   if (uart8_data == 0x01) // UART8收到0x01，执行播放东岳泰山（只执行一次）
-      //   {
-      //     uart8_data = 0;
-      //     PLAY_EAST_MOUNTAIN();
-      //   }
-      //   else if (uart8_data == 0x02) // UART8收到0x02，执行播放西岳华山（只执行一次）
-      //   {
-      //     uart8_data = 0;
-      //     PLAY_WEST_MOUNTAIN();
-      //   }
-      //   else if (uart8_data == 0x03) // UART8收到0x03，执行播放南岳衡山（只执行一次）
-      //   {
-      //     uart8_data = 0;
-      //     PLAY_SOUTH_MOUNTAIN();
-      //   }
-      //   else if (uart8_data == 0x04) // UART8收到0x04，执行播放北岳恒山（只执行一次）
-      //   {
-      //     uart8_data = 0;
-      //     PLAY_NORTH_MOUNTAIN();
-      //   }
-      //   else if (uart8_data == 0x05) // UART8收到0x05，执行播放中岳嵩山（只执行一次）
-      //   {
-      //     uart8_data = 0;
-      //     PLAY_CENTRAL_MOUNTAIN();
-      //   }
+      //   // if (uart8_data == 0x01) // UART8收到0x01，执行播放东岳泰山（只执行一次）
+      //   // {
+      //   //   uart8_data = 0;
+      //   //   PLAY_EAST_MOUNTAIN();
+      //   // }
+      //   // else if (uart8_data == 0x02) // UART8收到0x02，执行播放西岳华山（只执行一次）
+      //   // {
+      //   //   uart8_data = 0;
+      //   //   PLAY_WEST_MOUNTAIN();
+      //   // }
+      //   // else if (uart8_data == 0x03) // UART8收到0x03，执行播放南岳衡山（只执行一次）
+      //   // {
+      //   //   uart8_data = 0;
+      //   //   PLAY_SOUTH_MOUNTAIN();
+      //   // }
+      //   // else if (uart8_data == 0x04) // UART8收到0x04，执行播放北岳恒山（只执行一次）
+      //   // {
+      //   //   uart8_data = 0;
+      //   //   PLAY_NORTH_MOUNTAIN();
+      //   // }
+      //   // else if (uart8_data == 0x05) // UART8收到0x05，执行播放中岳嵩山（只执行一次）
+      //   // {
+      //   //   uart8_data = 0;
+      //   //   PLAY_CENTRAL_MOUNTAIN();
+      //   // }
 
       //   /* OLED刷新（TIM7每100ms置位） */
       //   if (oled_update_flag)
