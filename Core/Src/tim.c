@@ -541,9 +541,27 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       time6_count = 0;
     }
   }
-  if (htim->Instance == TIM7) // 100ms定时器中断，仅置标志位通知主循环刷新OLED
+  if (htim->Instance == TIM7) // 100ms定时器中断，置标志位通知主循环刷新OLED，并通过UART8发送传感器数据
   {
     oled_update_flag = 1;
+
+    // /* 拼接传感器数据及陀螺仪yaw，通过UART8发送 */
+    // char uart8_tx_buf[64];
+    // uint8_t e2_val  = HAL_GPIO_ReadPin(I2_GPIO_Port,  I2_Pin);
+    // uint8_t e6_val  = HAL_GPIO_ReadPin(J2_GPIO_Port,  J2_Pin);
+    // uint8_t e7_val  = HAL_GPIO_ReadPin(K2_GPIO_Port,  K2_Pin);
+    // uint8_t e8_val  = HAL_GPIO_ReadPin(L2_GPIO_Port,  L2_Pin);
+    // uint8_t e9_val  = HAL_GPIO_ReadPin(M2_GPIO_Port,  M2_Pin);
+    // uint8_t e10_val = HAL_GPIO_ReadPin(N2_GPIO_Port,  N2_Pin);
+    // uint8_t e11_val = HAL_GPIO_ReadPin(O2_GPIO_Port,  O2_Pin);
+    // uint8_t e15_val = HAL_GPIO_ReadPin(P2_GPIO_Port,  P2_Pin);
+    // uint8_t sum_val = e2_val + e6_val + e7_val + e8_val + e9_val + e10_val + e11_val + e15_val;
+
+    // get_imu_data();  // 刷新imu.yaw
+    // int len = sprintf(uart8_tx_buf, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%.1f\r\n",
+    //                   e2_val, e6_val, e7_val, e8_val, e9_val, e10_val, e11_val, e15_val,
+    //                   sum_val, imu.yaw);
+    // HAL_UART_Transmit(&huart8, (uint8_t *)uart8_tx_buf, len, 10);
   }
 }
 /* USER CODE END 1 */

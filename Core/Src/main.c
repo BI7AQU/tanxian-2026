@@ -71,6 +71,7 @@ uint8_t k230_data[4];
 static void SensorDataUpdata(uint32_t uiReg, uint32_t uiRegNum); // 陀螺仪数据更新
 extern uint8_t ucRegIndex;                                       // 注册指数
 uint8_t uart7_data;
+uint8_t uart8_data;
 uint8_t fyaw;
 uint16_t max_speed = 2000;
 float nowangle;
@@ -142,6 +143,7 @@ int main(void)
   HAL_UART_Receive_IT(&huart7, &uart7_data, 1); // 开启串口7接收中断
   HAL_UART_Receive_IT(&huart6, &uart6_data, 1); // 开启串口6接收中断
   HAL_UART_Receive_IT(&huart3, &uart3_data, 1); // 开启串口3接收中断
+  // HAL_UART_Receive_IT(&huart8, &uart8_data, 1); // 开启串口8接收中断
   WitRegisterCallBack(SensorDataUpdata);        // 注册获取传感器数据回调函数
   power_on();                                   // 打开电机电源
   can_filter_init();                            // CAN滤波器初始化
@@ -158,7 +160,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
   HAL_TIM_Base_Start_IT(&htim6); // 开启定时器6
-  HAL_TIM_Base_Start_IT(&htim7); // 开启定时器7（100ms），用于OLED显示陀螺仪角度
+  // HAL_TIM_Base_Start_IT(&htim7); // 开启定时器7（100ms），用于OLED显示陀螺仪角度
   // Servo4_SetAngle(0);
   HAL_Delay(2000);
   // Servo4_SetAngle(90);
@@ -179,19 +181,19 @@ int main(void)
   {
     while (GQ == 0)
       ;
-    // PLAY_STATE_READY();
-    // all_set();
-    HAL_Delay(3000);
+    PLAY_STATE_READY();
+    all_set();
+    // HAL_Delay(3000);
 
     RGB_RED(9, 0);
     RGB_RED(9, 1);
-    // one_to_two2();
-    // two_to_three2();
-    // three_to_four2();
-    // four_to_five2();
-    // five_to_seven2();
-    // seven_to_eight2();
-    // eight_to_home();
+    one_to_two2();
+    two_to_three2();
+    three_to_four2();
+    four_to_five2();
+    five_to_seven2();
+    seven_to_eight2();
+    eight_to_home();
 
     // tracking_expedite(9000, time_break, 2000);
     // tracking(7000, zero, 200);
@@ -204,25 +206,54 @@ int main(void)
     // tracking(5000, zero, 500);        // 到平台下
 
 
-      while (1)
-      {
-        stop();
-        /* OLED刷新（TIM7每100ms置位） */
-        if (oled_update_flag)
-        {
-          oled_update_flag = 0;
-          get_imu_data();
-          OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);
-          uint8_t hsl[3];
-          if (IIC_Get_HSL(hsl, 3))
-          {
-            OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);
-            OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);
-            OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);
-          }
-          OLED_Refresh();
-        }
-      }
+
+
+      // while (1)
+      // {
+      //   stop();
+        
+      //   if (uart8_data == 0x01) // UART8收到0x01，执行播放东岳泰山（只执行一次）
+      //   {
+      //     uart8_data = 0;
+      //     PLAY_EAST_MOUNTAIN();
+      //   }
+      //   else if (uart8_data == 0x02) // UART8收到0x02，执行播放西岳华山（只执行一次）
+      //   {
+      //     uart8_data = 0;
+      //     PLAY_WEST_MOUNTAIN();
+      //   }
+      //   else if (uart8_data == 0x03) // UART8收到0x03，执行播放南岳衡山（只执行一次）
+      //   {
+      //     uart8_data = 0;
+      //     PLAY_SOUTH_MOUNTAIN();
+      //   }
+      //   else if (uart8_data == 0x04) // UART8收到0x04，执行播放北岳恒山（只执行一次）
+      //   {
+      //     uart8_data = 0;
+      //     PLAY_NORTH_MOUNTAIN();
+      //   }
+      //   else if (uart8_data == 0x05) // UART8收到0x05，执行播放中岳嵩山（只执行一次）
+      //   {
+      //     uart8_data = 0;
+      //     PLAY_CENTRAL_MOUNTAIN();
+      //   }
+
+      //   /* OLED刷新（TIM7每100ms置位） */
+      //   if (oled_update_flag)
+      //   {
+      //     oled_update_flag = 0;
+      //     get_imu_data();
+      //     OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);
+      //     uint8_t hsl[3];
+      //     if (IIC_Get_HSL(hsl, 3))
+      //     {
+      //       OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);
+      //       OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);
+      //       OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);
+      //     }
+      //     OLED_Refresh();
+      //   }
+      // }
 
     // go_forward(5000, 500);            // 到平台中间
     // turn_angle(turn_left, 165, 5000); // 平台左转归正

@@ -460,6 +460,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     }
     HAL_UART_Receive_IT(&huart3, &uart3_data, 1);
   }
+  if (huart->Instance == UART8)
+  {
+    HAL_UART_Receive_IT(&huart8, &uart8_data, 1);  // 继续接收下一个字节
+  }
 }
 
 void Read_Data(uint16_t *Data)
