@@ -132,16 +132,16 @@ void five_to_seven2(void)
 {
     HAL_Delay(300);
     go_forward(4000, 400);              // 下平台
-    tracking(4000, forward_left, 1500); // 到岔路口1   !!!现场注意距离，修改时间！！！
+    tracking(8000, forward_left, 1500); // 到岔路口1   !!!现场注意距离，修改时间！！！
     go_forward(4000, 150);
-    while(1)
-    {
-        stop();
-    }
+    // while(1)
+    // {
+    //     stop();
+    // }
     turn_angle(turn_left, 75, 5000); // 岔路口1左转
     tracking(6000, forward_right, 400);
     go_forward(6000, 110);
-    turn_angle(turn_right, 65, 5000);  // 直立景点右转
+    turn_angle(turn_right, 70, 5000);  // 直立景点右转
     go_scenic_spot(110);               // 到达直立景点
     tracking(6000, forward_left, 400); // 到岔路口2
     go_forward(4500, 130);
