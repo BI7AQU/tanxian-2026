@@ -158,7 +158,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
   HAL_TIM_Base_Start_IT(&htim6); // 开启定时器6
-  // HAL_TIM_Base_Start_IT(&htim7);
+  HAL_TIM_Base_Start_IT(&htim7); // 开启定时器7（100ms），用于OLED显示陀螺仪角度
   // Servo4_SetAngle(0);
   HAL_Delay(2000);
   // Servo4_SetAngle(90);
@@ -179,8 +179,7 @@ int main(void)
   {
     while (GQ == 0)
       ;
-    // PLAY_STATE_READY();
-    PLAY_ARKNIGHTS();
+    PLAY_STATE_READY();
     // all_set();
     HAL_Delay(300);
 
@@ -190,9 +189,9 @@ int main(void)
     // two_to_three2();
     // three_to_four2();
     // four_to_five2();
-    five_to_seven2();
-    seven_to_eight2();
-    eight_to_home();
+    // five_to_seven2();
+    // seven_to_eight2();
+    // eight_to_home();
 
     // tracking_expedite(9000, time_break, 2000);
     // tracking(7000, zero, 200);

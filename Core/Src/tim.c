@@ -540,21 +540,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       time6_count = 0;
     }
   }
-  if (htim->Instance == TIM7) // 100ms定时器中断
+  if (htim->Instance == TIM7) // 100ms定时器中断，用于定时刷新OLED显示陀螺仪角度
   {
-    // static uint8_t i;
-    // if (i == 10)
-    // {
-      // get_imu_data();
-      // OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 24, 1);
-      // OLED_ShowNum(0,32,sum,1,24,1);
-      // OLED_Refresh();
-    // }
-    // i++;
-    // if (i > 10)
-    // {
-    //   i = 0;
-    // }
+    get_imu_data();
+    // get_color();
+    OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);   // Yaw角度
+    OLED_ShowNum(0, 16, HSL[0], 3, 16, 1);             // 颜色H值
+    OLED_Refresh();
   }
 }
 /* USER CODE END 1 */
