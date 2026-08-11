@@ -432,13 +432,7 @@ uint8_t Num = 0;               // 接收数据的当前位置
 uint8_t uart6_data;            // 接收数据
 
 uint8_t treasure[5];
-/*********************************************************************
- *  函数名称：void USART3_IRQHandler
- *  函数功能：串口3中断服务函数
- *  形    参：无
- *  输    出：无
- *  备    注：无
- ********************************************************************/
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if (huart->Instance == USART6)
@@ -446,43 +440,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     USART_RX_STA[Num++] = uart6_data;
     HAL_UART_Receive_IT(&huart6, &uart6_data, 1);
   }
-  if (huart->Instance == UART8)
-  {
-    static int i;
-    if (openmv_data[0] == 0xaa && openmv_data[1] == 0xbb & openmv_data[3] == 0xff)
-    {
-      if (openmv_data[2] == 0x01)
-      {
-        RC.green_flag = 1;
-        RC.black_flag = 0;
-        RC.blue_flag = 0;
-      }
-      if (openmv_data[2] == 0x02)
-      {
-        RC.blue_flag = 1;
-        RC.green_flag = 0;
-        RC.black_flag = 0;
-      }
-      if (openmv_data[2] == 0x03)
-      {
-        RC.black_flag = 1;
-        RC.green_flag = 0;
-        RC.blue_flag = 0;
-      }
-    }
-    i++;
-    if (openmv_data[0] != 0xaa)
-      i = 0;
-    if (i == 4)
-      i = 0;
-    // HAL_UART_Transmit(&huart7, &data[x], 1, 100);
-    HAL_UART_Receive_IT(&huart8, &openmv_data[i], 1);
-  }
 
   if (huart->Instance == UART7)
   {
     WitSerialDataIn(uart7_data);
-    // HAL_UART_Transmit(&huart3, &uart7_data, 1, 100);
     HAL_UART_Receive_IT(&huart7, &uart7_data, 1);
   }
   if (huart->Instance == USART3)

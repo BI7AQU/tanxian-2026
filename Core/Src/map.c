@@ -782,7 +782,7 @@ void four_to_five(void)
   }
   while (1)
   {
-    HAL_UART_Receive_IT(&huart8, openmv_data, 1);
+    HAL_UART_Receive_IT(&huart8, k230_data, 1);
     while (1) // 停，识别红绿灯1
     {
       RC.tim_flag = 1;
@@ -798,7 +798,7 @@ void four_to_five(void)
     {
       line1 = 1;
       HAL_UART_AbortReceive_IT(&huart8);
-      openmv_data[2] = 0;
+      k230_data[2] = 0;
       RC.black_flag = 0;
       RC.green_flag = 0;
       RC.blue_flag = 0;
@@ -830,7 +830,7 @@ void four_to_five(void)
     else if (RC.green_flag == 0) // 第一个红绿灯为红灯
     {
       HAL_UART_AbortReceive_IT(&huart8);
-      openmv_data[2] = 0;
+      k230_data[2] = 0;
       RC.black_flag = 0;
       RC.green_flag = 0;
       RC.blue_flag = 0;
@@ -866,7 +866,7 @@ void four_to_five(void)
         }
       }
 
-      HAL_UART_Receive_IT(&huart8, openmv_data, 1);
+      HAL_UART_Receive_IT(&huart8, k230_data, 1);
       while (1) // 停，识别红绿灯2
       {
         RC.tim_flag = 1;
@@ -883,7 +883,7 @@ void four_to_five(void)
       {
         line2 = 1;
         HAL_UART_AbortReceive_IT(&huart8);
-        openmv_data[2] = 0;
+        k230_data[2] = 0;
         RC.black_flag = 0;
         RC.green_flag = 0;
         RC.blue_flag = 0;
@@ -958,7 +958,7 @@ void four_to_five(void)
       else if (RC.green_flag == 0) // 第二个红绿灯为红灯
       {
         HAL_UART_AbortReceive_IT(&huart8);
-        openmv_data[2] = 0;
+        k230_data[2] = 0;
         RC.black_flag = 0;
         RC.green_flag = 0;
         RC.blue_flag = 0;
@@ -1042,7 +1042,7 @@ void four_to_five(void)
           }
         }
 
-        HAL_UART_Receive_IT(&huart8, openmv_data, 1);
+        HAL_UART_Receive_IT(&huart8, k230_data, 1);
         while (1) // 停，识别红绿灯3
         {
           RC.tim_flag = 1;
@@ -1059,7 +1059,7 @@ void four_to_five(void)
         {
           line3 = 1;
           HAL_UART_AbortReceive_IT(&huart8);
-          openmv_data[2] = 0;
+          k230_data[2] = 0;
           RC.green_flag = 0;
           RC.black_flag = 0;
           RC.blue_flag = 0;
@@ -1142,7 +1142,7 @@ void four_to_five(void)
         {
           line4 = 1;
           HAL_UART_AbortReceive_IT(&huart8);
-          openmv_data[2] = 0;
+          k230_data[2] = 0;
           RC.black_flag = 0;
           RC.green_flag = 0;
           RC.blue_flag = 0;

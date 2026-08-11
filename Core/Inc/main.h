@@ -92,8 +92,9 @@ typedef unsigned char bool;
   extern flag RC;
   extern uint8_t uart6_data;
   extern uint8_t sum;
-  extern uint8_t openmv_data[4];
+  extern uint8_t k230_data[4];
   extern uint8_t uart7_data;
+  extern uint8_t uart8_data;
   extern uint8_t fyaw;
   void process_command(uint8_t *cmd, uint8_t len);
 #define BUFFER_SIZE 128

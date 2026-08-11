@@ -67,7 +67,7 @@ uint8_t uart3_index = 0;
 uint8_t motor_flag;
 uint8_t trage_angle;
 flag RC={0,0,0,0,0,0};
-uint8_t openmv_data[4];
+uint8_t k230_data[4];
 static void SensorDataUpdata(uint32_t uiReg, uint32_t uiRegNum); // 陀螺仪数据更新
 extern uint8_t ucRegIndex;                                       // 注册指数
 uint8_t uart7_data;
@@ -179,9 +179,9 @@ int main(void)
   {
     while (GQ == 0)
       ;
-    PLAY_STATE_READY();
+    // PLAY_STATE_READY();
     // all_set();
-    HAL_Delay(300);
+    HAL_Delay(3000);
 
     RGB_RED(9, 0);
     RGB_RED(9, 1);
@@ -202,26 +202,28 @@ int main(void)
     // go_forward(5000, 190);
     // turn_angle(turn_right, 16, 5000); // 岔路口右转
     // tracking(5000, zero, 500);        // 到平台下
-    while(1)
-    {
-      stop();
-      /* 轮询OLED更新标志（TIM7每100ms置位），在主循环中执行I2C读取避免ISR死锁 */
-      if (oled_update_flag)
-      {
-        oled_update_flag = 0;
-        get_imu_data();
-        OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);   // Yaw角度
 
-        uint8_t hsl[3];
-        if (IIC_Get_HSL(hsl, 3))
+
+      while (1)
+      {
+        stop();
+        /* OLED刷新（TIM7每100ms置位） */
+        if (oled_update_flag)
         {
-          OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);           // H值
-          OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);           // S值
-          OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);           // L值
+          oled_update_flag = 0;
+          get_imu_data();
+          OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);
+          uint8_t hsl[3];
+          if (IIC_Get_HSL(hsl, 3))
+          {
+            OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);
+            OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);
+            OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);
+          }
+          OLED_Refresh();
         }
-        OLED_Refresh();
       }
-    }
+
     // go_forward(5000, 500);            // 到平台中间
     // turn_angle(turn_left, 165, 5000); // 平台左转归正
     // stop_time(3000);
