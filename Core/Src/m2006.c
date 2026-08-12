@@ -421,15 +421,25 @@ void go_trapezoidal_mountain(void) // 过梯形山
 {
 }
 
-void go_scenic_spot(uint16_t time) // 到景点
+void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
 {
+	Servo1_SetAngle(20);    //机器人站起
+	stop_time(500);
 	strike(); // 撞击平台
-	PLAY_UPRIGHT_SPOTS();
+	PLAY_ARKNIGHTS();
 	stop_time(300);
+
+	// while(1)
+    // {
+    //     stop();
+    // }
+
+	Servo1_SetAngle(100);    //机器人倒下
 	while (1)
 	{
 		track_PID(-3000);
 		if (EL == 0 || ER == 0)
+		// if (sum > 4)
 		{
 			break;
 		}

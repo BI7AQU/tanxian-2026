@@ -183,7 +183,7 @@ int main(void)
       ;
     // PLAY_STATE_READY();
     // all_set();
-    HAL_Delay(500);
+    HAL_Delay(1000);
 
     // RGB_RED(9, 0);
     // RGB_RED(9, 1);

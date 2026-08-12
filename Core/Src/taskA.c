@@ -130,7 +130,7 @@ void four_to_five2(void)
 
 void five_to_seven2(void)
 {
-    HAL_Delay(300);
+    
     go_forward(4000, 400);              // 下平台
     tracking(8000, forward_left, 1500); // 到岔路口1   !!!现场注意距离，修改时间！！！
     go_forward(4000, 150);
@@ -139,20 +139,20 @@ void five_to_seven2(void)
     //     stop();
     // }
     turn_angle(turn_left, 75, 5000); // 岔路口1左转
-    tracking(6000, forward_right, 400);
-    go_forward(6000, 110);
-    turn_angle(turn_right, 70, 5000);  // 直立景点右转
-    go_scenic_spot(110);               // 到达直立景点
-    tracking(6000, forward_left, 400); // 到岔路口2
-    go_forward(4500, 130);
+    tracking(6000, forward_right, 200);
+    go_forward(5000, 110);
+    turn_angle(turn_right, 80, 3000);  // 直立景点右转
+    go_scenic_spot(100);               // 到达直立景点
+    tracking(4000, forward_left, 300); // 到岔路口2
+    go_forward(4500, 12     0);
     // while(1)
     // {
     //     stop();
     // }
-    turn_angle(turn_left, 75, 5000); // 岔路口2左转
+    turn_angle(turn_left, 75, 4000); // 岔路口2左转
     go_forward(4500, 200);
     tracking(7000, time_break, 1400);
-    tracking(5000, time_break, 1500);
+    // tracking(5000, time_break, 1500);
     tracking(7000, forward_right, 20); // 到岔路口3
     go_forward(4000, 80);                                                   //
     turn_angle(turn_right, 70, 5000); // 岔路口3右转
@@ -181,6 +181,10 @@ void seven_to_eight2(void)
     tracking(3600, time_break, 4100);
     tracking(8000, time_break, 900);
     tracking(6000, time_break, 1300);
+    // while(1)
+    // {
+    //     stop();
+    // }
     tracking(7500, time_break, 1400);
     tracking(5000, zero, 500); // 过8前半平台
     RC.eight_flag = 1;
@@ -267,7 +271,7 @@ void eight_to_home(void)
     turn_angle(turn_right, 80, 5000); // 岔路口3右转
     tracking(7000, forward_right, 200);
     go_forward(4000, 180);
-    turn_angle(turn_right, 80, 5000);
+    turn_angle(turn_right, 75, 5000);
     tracking(6000, forward_right, 900);
     go_forward(6000, 110);
     turn_angle(turn_right, 80, 5000); // 直立景点右转
@@ -279,7 +283,7 @@ void eight_to_home(void)
     go_forward(5000, 1400);
     tracking(5000, time_break, 400);
     tracking(7000, time_break, 500);
-    tracking(6000, forward_right, 100);
+    tracking(6000, forward_right, 100); 
     go_home(RC.line_flag);             // 选择路线返回
     tracking(4000, time_break, 500);   // 到路障前
     tracking(3300, time_break, 2500);  // 过路障
