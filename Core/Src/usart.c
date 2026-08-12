@@ -466,6 +466,17 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   }
 }
 
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+  /* UART8发生溢出(ORE)等错误时，HAL会停止接收且不会自动恢复，
+     这里清除溢出标志并重新开启接收，避免"只能接收一次"的问题 */
+  if (huart->Instance == UART8)
+  {
+    __HAL_UART_CLEAR_OREFLAG(huart);               // 清除溢出(ORE)/RXNE标志
+    HAL_UART_Receive_IT(&huart8, &uart8_data, 1);  // 重新开启接收
+  }
+}
+
 void Read_Data(uint16_t *Data)
 {
   uint8_t password = 0x57;

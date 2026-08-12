@@ -423,10 +423,55 @@ void go_trapezoidal_mountain(void) // 过梯形山
 
 void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
 {
+	// 重置串口8接收状态，避免上次残留数据/溢出导致第二次调用时读到旧数据
+	uart8_data = 0x00;                       // 清除上次残留数据
+	HAL_UART_AbortReceive(&huart8);          // 中止可能仍在进行的接收，确保状态为READY
+	__HAL_UART_CLEAR_OREFLAG(&huart8);       // 清除溢出(ORE)/RXNE标志（HAL开启接收时不会自动清除）
+	HAL_UART_Receive_IT(&huart8, &uart8_data, 1); // 重新开启串口8接收中断
 	Servo1_SetAngle(20);    //机器人站起
-	stop_time(500);
+	stop_time(300);
 	strike(); // 撞击平台
-	PLAY_ARKNIGHTS();
+	for (size_t i = 0; i <= 5; i++)  //后退500ms，没识别到就不识别了
+	{
+		go_forward(-1000,i *100);
+	    if (uart8_data == 0x01) // UART8收到0x01，执行播放东岳泰山（只执行一次）
+        {
+          uart8_data = 0x00;
+          PLAY_EAST_MOUNTAIN();
+		  break;
+        }
+        else if (uart8_data == 0x02) // UART8收到0x02，执行播放西岳华山（只执行一次）
+        {
+          uart8_data = 0x00;
+          PLAY_WEST_MOUNTAIN();
+		  break;
+        }
+        else if (uart8_data == 0x03) // UART8收到0x03，执行播放南岳衡山（只执行一次）
+        {
+          uart8_data = 0x00;
+          PLAY_SOUTH_MOUNTAIN();
+		  break;
+        }
+        else if (uart8_data == 0x04) // UART8收到0x04，执行播放北岳恒山（只执行一次）
+        {
+          uart8_data = 0x00;
+          PLAY_NORTH_MOUNTAIN();
+		  break;
+        }
+        else if (uart8_data == 0x05) // UART8收到0x05，执行播放中岳嵩山（只执行一次）
+        {
+          uart8_data = 0x00;
+          PLAY_CENTRAL_MOUNTAIN();
+		  break;
+        }
+		// else if (i == 5)
+		// {
+		// 	PLAY_ARKNIGHTS();  // UART8没收到数据，执行播放明日方舟（只执行一次）
+		// 	break;
+		// }
+	}
+
+
 	stop_time(300);
 
 	// while(1)
@@ -437,7 +482,7 @@ void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
 	Servo1_SetAngle(100);    //机器人倒下
 	while (1)
 	{
-		track_PID(-3000);
+		track_PID(-2000);
 		if (EL == 0 || ER == 0)
 		// if (sum > 4)
 		{

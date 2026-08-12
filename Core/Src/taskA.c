@@ -144,7 +144,7 @@ void five_to_seven2(void)
     turn_angle(turn_right, 80, 3000);  // 直立景点右转
     go_scenic_spot(100);               // 到达直立景点
     tracking(4000, forward_left, 300); // 到岔路口2
-    go_forward(4500, 12     0);
+    go_forward(4500, 120);
     // while(1)
     // {
     //     stop();
@@ -264,18 +264,18 @@ void eight_to_home(void)
     tracking(8000, time_break, 1000);
     tracking(6000, forward_left, 200); // 到岔路口2
     go_forward(4000, 240);
-    turn_angle(turn_left, 100, 5000); // 岔路口2左转
+    turn_angle(turn_left, 80, 5000); // 岔路口2左转
     tracking(8000, time_break, 700);
     tracking(7000, forward_right, 500); // 到岔路口3
     go_forward(4000, 190);
-    turn_angle(turn_right, 80, 5000); // 岔路口3右转
+    turn_angle(turn_right, 75, 5000); // 岔路口3右转
     tracking(7000, forward_right, 200);
     go_forward(4000, 180);
     turn_angle(turn_right, 75, 5000);
     tracking(6000, forward_right, 900);
     go_forward(6000, 110);
-    turn_angle(turn_right, 80, 5000); // 直立景点右转
-    go_scenic_spot(200);              // 到达直立景点
+    turn_angle(turn_right, 75, 5000); // 直立景点右转
+    go_scenic_spot(100);              // 到达直立景点
     tracking(5500, forward_right, 500);
     go_forward(6000, 120);
     turn_angle(turn_right, 80, 5000);
@@ -292,7 +292,7 @@ void eight_to_home(void)
     turn_angle(turn_right, 16, 5000); // 岔路口右转
     tracking(5000, zero, 300);        // 到平台下
     go_forward(5000, 500);            // 到平台中间
-    turn_angle(turn_left, 165, 5000); // 平台左转归正
+    turn_angle(turn_left, 145, 5000); // 平台左转归正
     PLAY_ARRIVE_HOME();
     stop_time(3000);
 }

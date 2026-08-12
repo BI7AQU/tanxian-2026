@@ -184,16 +184,22 @@ int main(void)
     // PLAY_STATE_READY();
     // all_set();
     HAL_Delay(1000);
+    // Servo1_SetAngle(20);    //机器人站起
 
-    // RGB_RED(9, 0);
-    // RGB_RED(9, 1);
+    RGB_RED(9, 0);
+    RGB_RED(9, 1);
     // one_to_two2();
     // two_to_three2();
     // three_to_four2();
     // four_to_five2();
-    five_to_seven2();
-    seven_to_eight2();
-    eight_to_home();
+    // five_to_seven2();
+    // seven_to_eight2();
+    // eight_to_home();
+
+    go_scenic_spot(100);
+    stop_time(300);
+
+    HAL_Delay(5000);
 
     // tracking_expedite(9000, time_break, 2000);
     // tracking(7000, zero, 200);
