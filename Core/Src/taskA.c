@@ -36,7 +36,29 @@ void go_traffic_light(uint8_t num)
     switch (num)
     {
     case 1:
-        tracking(7000, forward_left, 1000); // 到红绿灯1停
+        tracking(6000, forward_left, 1000); // 到红绿灯1停
+
+    //   while (1)  //用于调试红绿灯H值，记得开定时器7（100ms），用于OLED显示
+    //   {
+    //     stop();
+
+    //     /* OLED刷新（TIM7每100ms置位） */
+    //     if (oled_update_flag)
+    //     {
+    //       oled_update_flag = 0;
+    //       get_imu_data();
+    //       OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);
+    //       uint8_t hsl[3];
+    //       if (IIC_Get_HSL(hsl, 3))
+    //       {
+    //         OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);
+    //         OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);
+    //         OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);
+    //       }
+    //       OLED_Refresh();
+    //     }
+    //   }
+
         traffic_light(1);
         if (RC.line_flag == 1) // 绿灯
         // if(1)
@@ -54,11 +76,11 @@ void go_traffic_light(uint8_t num)
             turn_angle(turn_left, 160, 5000);   // 回头
             tracking(7000, forward_right, 500); // 到岔路口1
             go_forward(6000, 160);
-            turn_angle(turn_left, 113, 5000); // 岔路口1左转
+            turn_angle(turn_left, 115, 5000); // 岔路口1左转
         }
         break;
     case 2:
-        tracking(6000, forward_left, 400); // 到红绿灯2停
+        tracking(6000, forward_left, 420); // 到红绿灯2停
         traffic_light(2);
         if (RC.line_flag == 2) // 绿灯
         {
@@ -77,13 +99,13 @@ void go_traffic_light(uint8_t num)
             tracking(6000, forward_right, 700); // 到岔路口1
             go_forward(6000, 210);
             turn_angle(turn_left, 105, 5000);             // 岔路口1左转
-            tracking_expedite(10000, forward_left, 2000); // 到岔路口2
+            tracking_expedite(7000, forward_left, 2000); // 到岔路口2
             go_forward(6000, 250);
             turn_angle(turn_left, 115, 5000); // 岔路口2左转
         }
         break;
     case 3:
-        tracking(7000, forward_left, 400); // 到红绿灯3停
+        tracking(6000, forward_left, 400); // 到红绿灯3停
         traffic_light(3);
         if (RC.line_flag == 3 || RC.line_flag == 5) // 绿灯或者蓝灯
         {
@@ -95,9 +117,13 @@ void go_traffic_light(uint8_t num)
         else // 黑灯
         {
             turn_angle(turn_left, 155, 5000);  // 回头
+        // while(1)
+        // {
+        //     stop();
+        // }
             tracking(7000, forward_left, 400); // 到岔路口1
             go_forward(6000, 250);
-            turn_angle(turn_left, 110, 5000); // 岔路口1左转
+            turn_angle(turn_left, 112, 5000); // 岔路口1左转
             tracking_expedite(12000, time_break, 1500);
             tracking(8000, forward_right, 100); // 到岔路口2
             go_forward(6000, 170);
@@ -123,6 +149,10 @@ void four_to_five2(void)
         go_traffic_light(2);         // 到红绿灯2
     if (RC.line_flag == 0)           // 红绿灯不为绿灯
         go_traffic_light(3);         // 到红绿灯3
+    // while (1)
+    // {
+    //     stop();
+    // }   
     tracking_expedite(8000, time_break, 2000);
     tracking(7000, zero, 200);
     go_platform(5);
@@ -154,12 +184,12 @@ void five_to_seven2(void)
     tracking(7000, time_break, 1400);
     // tracking(5000, time_break, 1500);
     tracking(7000, forward_right, 20); // 到岔路口3
-    go_forward(4000, 80);                                                   //
+    go_forward(4000, 80);                                                   
     turn_angle(turn_right, 70, 5000); // 岔路口3右转
     tracking(7000, time_break, 900);
     tracking(6500, forward_right, 20); // 到岔路口4
     go_forward(4000, 200);
-    turn_angle(turn_right, 70, 5000); // 岔路口4右转
+    turn_angle(turn_right, 67, 5000); // 岔路口4右转
     tracking(8000, time_break, 1100);
     tracking(5000, time_break, 1200);
     tracking(7000, forward_right, 20); // 到岔路口5
@@ -169,8 +199,8 @@ void five_to_seven2(void)
     go_forward(4000, 200);
     turn_angle(turn_right, 70, 5000); // 岔路口6右转
     tracking(6000, forward_right, 500);
-    tracking(3500, time_break, 4000);
-    tracking(4500, zero, 1800); // 到平台下
+    tracking(3500, time_break, 3000);
+    tracking(4500, zero, 1700); // 到平台下
     go_platform(7);             // 到平台并完成动作
 }
 
@@ -199,8 +229,7 @@ void go_home(uint8_t num)
     {
     case 1:                               // 第一个红绿灯位绿灯
         tracking(7000, time_break, 1000); // 到路障前
-
-        tracking(3500, time_break, 4000); // 过路障
+        tracking(4000, time_break, 3000); // 过路障
         // while(1)
         // {
         //     stop();
@@ -238,6 +267,15 @@ void go_home(uint8_t num)
         turn_angle(turn_left, 30, 5000); // 岔路口4左转
         break;
     case 4: // 第四个红绿灯为绿灯
+        go_forward(5000, 150);
+        turn_angle(turn_left, 70, 5000);             // 岔路口1左转
+        tracking_expedite(8000, forward_left, 1500); // 到岔路口2
+        go_forward(6000, 120);
+        turn_angle(turn_right, 70, 5000);     // 岔路口2右转
+        tracking(7000, forward_left, 1500); // 到岔路口3
+        go_forward(6000, 200);
+        turn_angle(turn_left, 30, 5000);           // 岔路口3左转
+        break;
     case 5: // 第三个红绿灯为蓝灯
         go_forward(4000, 110);
         turn_angle(turn_left, 75, 5000);              // 岔路口1左转
@@ -264,27 +302,32 @@ void eight_to_home(void)
     tracking(8000, time_break, 1000);
     tracking(6000, forward_left, 200); // 到岔路口2
     go_forward(4000, 240);
-    turn_angle(turn_left, 80, 5000); // 岔路口2左转
+    turn_angle(turn_left, 86, 5000); // 岔路口2左转
     tracking(8000, time_break, 700);
     tracking(7000, forward_right, 500); // 到岔路口3
     go_forward(4000, 190);
     turn_angle(turn_right, 75, 5000); // 岔路口3右转
     tracking(7000, forward_right, 200);
     go_forward(4000, 180);
-    turn_angle(turn_right, 75, 5000);
+    turn_angle(turn_right, 75, 5000); // 岔路口4右转
     tracking(6000, forward_right, 900);
     go_forward(6000, 110);
     turn_angle(turn_right, 75, 5000); // 直立景点右转
     go_scenic_spot(100);              // 到达直立景点
     tracking(5500, forward_right, 500);
     go_forward(6000, 120);
-    turn_angle(turn_right, 80, 5000);
+    turn_angle(turn_right, 83, 5000);
     tracking(5000, forward_left, 100); // 到岔路口5
     go_forward(5000, 1400);
     tracking(5000, time_break, 400);
     tracking(7000, time_break, 500);
     tracking(6000, forward_right, 100); 
-    go_home(RC.line_flag);             // 选择路线返回
+    // while(1)
+    //     {
+    //         stop();
+    //     }
+    // go_home(RC.line_flag);             // 选择路线返回  
+    go_home(4);  // 第四个红绿灯为绿灯
     tracking(4000, time_break, 500);   // 到路障前
     tracking(3300, time_break, 2500);  // 过路障
     tracking(6000, forward_left, 100); // 到岔路口
@@ -292,7 +335,7 @@ void eight_to_home(void)
     turn_angle(turn_right, 16, 5000); // 岔路口右转
     tracking(5000, zero, 300);        // 到平台下
     go_forward(5000, 500);            // 到平台中间
-    turn_angle(turn_left, 145, 5000); // 平台左转归正
+    turn_angle(turn_left, 135, 5000); // 平台左转归正
     PLAY_ARRIVE_HOME();
     stop_time(3000);
 }

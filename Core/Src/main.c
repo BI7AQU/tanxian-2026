@@ -188,16 +188,16 @@ int main(void)
 
     RGB_RED(9, 0);
     RGB_RED(9, 1);
-    one_to_two2();
-    two_to_three2();
-    three_to_four2();
-    four_to_five2();
-    five_to_seven2();
-    seven_to_eight2();
+    // one_to_two2();
+    // two_to_three2();
+    // three_to_four2();
+    // four_to_five2();
+    // five_to_seven2();
+    // seven_to_eight2();
     eight_to_home();
 
     // go_scenic_spot(100);
-    stop_time(300);
+    stop_time(1000);
 
     // HAL_Delay(5000);
 
@@ -217,32 +217,6 @@ int main(void)
       // while (1)
       // {
       //   stop();
-        
-      //   // if (uart8_data == 0x01) // UART8收到0x01，执行播放东岳泰山（只执行一次）
-      //   // {
-      //   //   uart8_data = 0;
-      //   //   PLAY_EAST_MOUNTAIN();
-      //   // }
-      //   // else if (uart8_data == 0x02) // UART8收到0x02，执行播放西岳华山（只执行一次）
-      //   // {
-      //   //   uart8_data = 0;
-      //   //   PLAY_WEST_MOUNTAIN();
-      //   // }
-      //   // else if (uart8_data == 0x03) // UART8收到0x03，执行播放南岳衡山（只执行一次）
-      //   // {
-      //   //   uart8_data = 0;
-      //   //   PLAY_SOUTH_MOUNTAIN();
-      //   // }
-      //   // else if (uart8_data == 0x04) // UART8收到0x04，执行播放北岳恒山（只执行一次）
-      //   // {
-      //   //   uart8_data = 0;
-      //   //   PLAY_NORTH_MOUNTAIN();
-      //   // }
-      //   // else if (uart8_data == 0x05) // UART8收到0x05，执行播放中岳嵩山（只执行一次）
-      //   // {
-      //   //   uart8_data = 0;
-      //   //   PLAY_CENTRAL_MOUNTAIN();
-      //   // }
 
       //   /* OLED刷新（TIM7每100ms置位） */
       //   if (oled_update_flag)
