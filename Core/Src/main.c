@@ -152,7 +152,7 @@ int main(void)
   {
     pid_init(&motor_pid_speed[i]);
     pid_init(&motor_pid[i]);
-    motor_pid_speed[i].f_param_init(&motor_pid_speed[i], PID_Speed, 16384, 5000, 0, 0, 8000, 0, 1.5, 0.01, 0.5); // 速度PID  0.6, 0.002, 0.8
+    motor_pid_speed[i].f_param_init(&motor_pid_speed[i], PID_Speed, 16384, 5000, 0, 0, 8000, 0, 1.5, 0.015, 0.5); // 速度PID  0.6, 0.002, 0.8
     motor_pid[i].f_param_init(&motor_pid[i], PID_Speed, 16384, 5000, 10, 0, 8000, 0, 0.8, 0.02, 0);
   }
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1); // 打开PWM
@@ -191,9 +191,9 @@ int main(void)
     // one_to_two2();
     // two_to_three2();
     // three_to_four2();
-    //four_to_five2();
-    //five_to_seven2();
-    //seven_to_eight2();
+    // four_to_five2();
+    // five_to_seven2();
+    // seven_to_eight2();
     eight_to_home();
 
     // go_scenic_spot(100);

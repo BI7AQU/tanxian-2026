@@ -490,8 +490,10 @@ void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
 		}
 	}
 	go_forward(-3000,time);
-	turn_angle(turn_left, 80, 5000);
+	//turn_angle(turn_left, 80, 5000);
 }
+
+
 
 void go_bridge2(void)
 {
