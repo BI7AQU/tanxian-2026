@@ -413,7 +413,7 @@ void go_platform(uint8_t music) // 到平台
 	}
 	stop1();
 	do_platform();
-	turn_angle(turn_right, 165, 5000);
+	turn_angle(turn_right, 164, 5000);
 	stop1();
 }
 
