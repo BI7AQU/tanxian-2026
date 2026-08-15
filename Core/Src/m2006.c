@@ -17,7 +17,7 @@ void track_PID(float speed)
 	else if (speed <= 7000)
 		track_run(speed, 6, 0, 0.8, 0);
 	else if (speed <= 10000)
-		track_run(speed, 5, 0, 0.7, 0);
+		track_run(speed, 5, 0, 0.72, 0);
 	else if (speed <= 12000)
 		track_run(speed, 4, 0, 0.4, 0);
 }
@@ -413,7 +413,7 @@ void go_platform(uint8_t music) // 到平台
 	}
 	stop1();
 	do_platform();
-	turn_angle(turn_right, 164, 5000);
+	turn_angle(turn_right, 162, 5000);
 	stop1();
 }
 
