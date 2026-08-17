@@ -542,14 +542,15 @@ void traffic_light(uint8_t num)
 		break;
 
 	case 4:
-		if (RC.green_flag == 1)
-		{
-			RC.line_flag = 4;
-		}
-		else
-		{
-			RC.line_flag = 0;
-		}
+		RC.line_flag = 4;
+		// if (RC.green_flag == 1)
+		// {
+		// 	RC.line_flag = 4;
+		// }
+		// else
+		// {
+		// 	RC.line_flag = 0;
+		// }
 		break;
 
 	default:

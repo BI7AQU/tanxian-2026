@@ -61,6 +61,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+uint16_t score = 0;
 uint8_t uart_rx_buffer[BUFFER_SIZE];
 uint8_t uart3_data;
 uint8_t uart3_index = 0;
@@ -160,7 +161,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
   HAL_TIM_Base_Start_IT(&htim6); // 开启定时器6
-  // HAL_TIM_Base_Start_IT(&htim7); // 开启定时器7（100ms），用于OLED显示
+  HAL_TIM_Base_Start_IT(&htim7); // 开启定时器7（100ms），用于OLED显示
   // Servo4_SetAngle(0);
   HAL_Delay(2000);
   // Servo4_SetAngle(90);
@@ -179,26 +180,27 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    while (GQ == 0)
-      ;
-    PLAY_STATE_READY();
-    all_set();
-    HAL_Delay(1000);
-    // Servo1_SetAngle(20);    //机器人站起
+    // while (GQ == 0)
+    //   ;
+    // PLAY_STATE_READY();
+    // all_set();
+    // HAL_Delay(1000);
+    // // Servo1_SetAngle(20);    //机器人站起
 
-    RGB_RED(9, 0);
-    RGB_RED(9, 1);
+    // RGB_RED(9, 0);
+    // RGB_RED(9, 1);
+
+    // // OLED_ShowString(0, 0, (uint8_t *)"score:", 16, 1);       // 显示 "score:"，占 6 字符 = 48 像素
+    // // OLED_ShowNum(48, 0, (int16_t)score, 4, 16, 1);           // 数字从 x=48 开始，4 位补零
 
 
-
-
-    one_to_two2();
-    two_to_three2();
-    three_to_four2();
-    four_to_five2();
-    five_to_seven2();
-    seven_to_eight2();
-    eight_to_home();
+    // one_to_two2();
+    // two_to_three2();
+    // three_to_four2();
+    // four_to_five2();
+    // five_to_seven2();
+    // seven_to_eight2();
+    // eight_to_home();
 
     // go_scenic_spot(100);
     
@@ -223,26 +225,26 @@ int main(void)
     // }
 
 
-      // while (1)
-      // {
-      //   stop();
+      while (1)
+      {
+        stop();
 
-      //   /* OLED刷新（TIM7每100ms置位） */
-      //   if (oled_update_flag)
-      //   {
-      //     oled_update_flag = 0;
-      //     get_imu_data();
-      //     OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);
-      //     uint8_t hsl[3];
-      //     if (IIC_Get_HSL(hsl, 3))
-      //     {
-      //       OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);
-      //       OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);
-      //       OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);
-      //     }
-      //     OLED_Refresh();
-      //   }
-      // }
+        /* OLED刷新（TIM7每100ms置位） */
+        if (oled_update_flag)
+        {
+          oled_update_flag = 0;
+          get_imu_data();
+          OLED_ShowNum(0, 0, (int32_t)imu.yaw, 3, 16, 1);
+          uint8_t hsl[3];
+          if (IIC_Get_HSL(hsl, 3))
+          {
+            OLED_ShowNum(0, 16, hsl[0], 3, 16, 1);
+            OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);
+            OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);
+          }
+          OLED_Refresh();
+        }
+      }
 
     // go_forward(5000, 500);            // 到平台中间
     // turn_angle(turn_left, 165, 5000); // 平台左转归正
