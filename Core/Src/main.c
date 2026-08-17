@@ -192,12 +192,12 @@ int main(void)
 
 
 
-    // one_to_two2();
-    // two_to_three2();
-    // three_to_four2();
-    // four_to_five2();
-    // five_to_seven2();
-    // seven_to_eight2();
+    one_to_two2();
+    two_to_three2();
+    three_to_four2();
+    four_to_five2();
+    five_to_seven2();
+    seven_to_eight2();
     eight_to_home();
 
     // go_scenic_spot(100);

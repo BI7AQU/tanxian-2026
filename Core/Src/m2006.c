@@ -429,7 +429,7 @@ void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
 	__HAL_UART_CLEAR_OREFLAG(&huart8);       // 清除溢出(ORE)/RXNE标志（HAL开启接收时不会自动清除）
 	HAL_UART_Receive_IT(&huart8, &uart8_data, 1); // 重新开启串口8接收中断
 	Servo1_SetAngle(20);    //机器人站起
-	stop_time(300);
+	stop_time(200);
 	strike(); // 撞击平台
 	for (size_t i = 0; i <= 5; i++)  //后退500ms，没识别到就不识别了
 	{
@@ -472,7 +472,7 @@ void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
 	}
 
 
-	stop_time(300);
+	stop_time(200);
 
 	// while(1)
     // {
