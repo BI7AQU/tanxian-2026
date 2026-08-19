@@ -204,7 +204,7 @@ void turn_angle(TurnDirection direction, float degrees, float speeed)
 			motor_pid_speed[i].target = direction * speeed;
 			motor_pid_speed[i].f_cal_pid(&motor_pid_speed[i], motor_chassis[i].speed_rpm); // 根据设定值进行PID计算。
 		}
-		set_moto_current(motor_pid_speed[0].output, motor_pid_speed[1].output, motor_pid_speed[2].output, motor_pid_speed[3].output);
+		set_moto_current(motor_pid_speed[0].output * 0.5, motor_pid_speed[1].output, motor_pid_speed[2].output * 0.5, motor_pid_speed[3].output);
 		HAL_Delay(10);
 		if (fabs(target_angle - imu.yaw) < 5.0f)
 		{
@@ -220,6 +220,51 @@ void turn_angle(TurnDirection direction, float degrees, float speeed)
 		}
 	}
 }
+
+// /// @brief 陀螺仪转弯
+// /// @param dir
+// /// @param angle
+// /// @param speed
+// /// @return
+// void turn_angle_Y(TurnDirection direction, float degrees, float speeed)
+// {
+// 	get_imu_data();
+// 	float current_yaw = imu.yaw;
+// 	float target_angle = current_yaw + (-direction * degrees);
+// 	if (target_angle > 180)
+// 		target_angle -= 360;
+// 	if (target_angle < -180)
+// 		target_angle += 360;
+// 	float error;
+// 	if (direction == turn_left)
+// 	{
+// 		RGB_YELLOW(9, 0);
+// 	}
+// 	else
+// 	{
+// 		RGB_YELLOW(9, 1);
+// 	}
+// 	while (1)
+// 	{
+// 		get_imu_data();
+
+// 		set_moto_current(35, 35,-35, -35);
+// 		HAL_Delay(10);
+// 		if (fabs(target_angle - imu.yaw) < 5.0f)
+// 		{
+// 			if (direction == turn_left)
+// 			{
+// 				RGB_RED(9, 0);
+// 			}
+// 			else
+// 			{
+// 				RGB_RED(9, 1);
+// 			}
+// 			return;
+// 		}
+// 	}
+// }
+
 
 void stop(void)
 {
@@ -413,7 +458,7 @@ void go_platform(uint8_t music) // 到平台
 	}
 	stop1();
 	do_platform();
-	turn_angle(turn_right, 162, 5000);
+	turn_angle(turn_right, 160, 5000);  
 	stop1();
 }
 

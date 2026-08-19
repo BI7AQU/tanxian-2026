@@ -52,4 +52,5 @@ void go_trapezoidal_mountain(void);
 void go_scenic_spot(uint16_t time);
 void go_bridge2(void);
 void traffic_light(uint8_t num);
+void turn_angle_Y(TurnDirection direction, float degrees, float speeed);
 #endif /*__ M2006_H__ */
