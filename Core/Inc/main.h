@@ -87,7 +87,7 @@ typedef unsigned char bool;
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-  extern uint8_t shibai;
+  extern uint8_t backhome;
   extern uint32_t time6_count;
   extern uint8_t treasure[5];
   extern flag RC;

@@ -61,7 +61,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint8_t shibai = 0;
+uint8_t backhome = 1;
 uint16_t score = 0;
 uint8_t uart_rx_buffer[BUFFER_SIZE];
 uint8_t uart3_data;
@@ -181,7 +181,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    while (GQ == 0);
+    while (GQ == 0)
+    {
+      if (EQ == 0)
+      {
+        HAL_Delay(200);
+        backhome = -backhome;
+      }
+    }
     PLAY_STATE_READY();
     all_set();
     HAL_Delay(1000);
@@ -194,19 +201,19 @@ int main(void)
     // OLED_ShowNum(48, 0, (int16_t)score, 4, 16, 1);           // 数字从 x=48 开始，4 位补零
 
 
-    // one_to_two2();
-    // two_to_three2();
+    one_to_two2();
+    two_to_three2();
     three_to_four2();
-    // four_to_five2();
-    // five_to_seven2();
-    // seven_to_eight2();
-    // eight_to_home();
+    four_to_five2();
+    five_to_seven2();
+    seven_to_eight2();
+    eight_to_home();
 
     // go_scenic_spot(100);
     
     stop_time(1000);
 
-    // HAL_Delay(5000);
+    HAL_Delay(5000);
 
     // tracking_expedite(9000, time_break, 2000);
     // tracking(7000, zero, 200);

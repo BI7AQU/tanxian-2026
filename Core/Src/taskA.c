@@ -34,17 +34,17 @@ void three_to_four2(void)
     tracking(5000, time_break, 1000);
     tracking_expedite(12000, forward_right, 4000); // 到岔路口4
     go_forward(5000, 200); 
-    // while (1)
-    // {
-    //     stop();
-    // }
-    turn_angle(turn_left, 17, 5000);              // 岔路口1左转
-    tracking(6000, time_break, 1700);  
-    go_scenic_spot(100);               // 到达直立景点
-    turn_angle(turn_left, 145, 5000);
-    tracking(6000, forward_left, 500);
+    // // while (1)
+    // // {
+    // //     stop();
+    // // }
+    // turn_angle(turn_left, 17, 5000);              // 岔路口1左转
+    // tracking(6000, time_break, 1700);  
+    // go_scenic_spot(100);               // 到达直立景点
+    // turn_angle(turn_left, 145, 5000);
+    // tracking(6000, forward_left, 500);
     go_forward(5000, 200);
-    turn_angle(turn_left, 114, 5000);                  
+    // turn_angle(turn_left, 114, 5000);                  
     tracking(6000, zero, 600);                   // 到平台下
     go_platform(4);                               // 到平台并完成动作
 }
@@ -420,40 +420,25 @@ void eight_to_home(void)
     go_forward(5000, 110);
     turn_angle(turn_right, 77, 3000);  // 直立景点右转
     go_scenic_spot(100);               // 到达直立景点
-    turn_angle(turn_right, 75, 5000);
-    tracking(6000, forward_right, 200);
-    // while(1)
-    // {
-    //     stop();
-    // } 
-    //回家
-    go_home(1);             // 选择路线返回  RC.line_flag
-    // while(1)
-    // {
-    //     stop();
-    // } 
-    go_forward(5000, 200);  
-    tracking(5000, time_break, 200);   // 到路障前
-    tracking(4000, time_break, 2000);  // 过路障
-    tracking(6000, forward_left, 100); // 到岔路口
-    go_forward(5000, 240);
-    // if(shibai==0)
-    // {
-    //     turn_angle(turn_right, 40, 5000);  // 岔路口右转
-    //     tracking(5000, zero, 300);         // 到平台下
-    //     go_forward(5000, 420);             // 到平台中间
-    //     turn_angle(turn_right, 140, 4000);  // 平台you转归正
-    //     // PLAY_ARRIVE_HOME();
-    //     stop_time(3000);
-    //     shibai++;
-    // }
 
-    
-    turn_angle(turn_right, 16, 5000);  // 岔路口右转
-    tracking(5000, zero, 300);         // 到平台下
-    go_forward(5000, 420);             // 到平台中间
-    turn_angle(turn_right, 140, 4000);  // 平台you转归正
-    PLAY_ARRIVE_HOME();
-    stop_time(3000);
-    //到家了！！！
+    if(backhome == 1) 
+    {   
+        turn_angle(turn_right, 75, 5000);
+        tracking(6000, forward_right, 200);
+        //回家
+        go_home(1);             // 选择路线返回  RC.line_flag
+        go_forward(5000, 200);  
+        tracking(5000, time_break, 200);   // 到路障前
+        tracking(4000, time_break, 2000);  // 过路障
+        tracking(6000, forward_left, 100); // 到岔路口
+        go_forward(5000, 240);
+        
+        turn_angle(turn_right, 16, 5000);  // 岔路口右转
+        tracking(5000, zero, 300);         // 到平台下
+        go_forward(5000, 420);             // 到平台中间
+        turn_angle(turn_right, 140, 4000);  // 平台you转归正
+        PLAY_ARRIVE_HOME();
+        stop_time(3000);
+        //到家了！！！
+    }
 }
