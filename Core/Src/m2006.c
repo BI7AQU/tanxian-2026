@@ -414,8 +414,9 @@ void strike(void) // 撞击平台
 {
 	while (1)
 	{
-		speed_pid(3000);
-		set_moto_current(motor_pid_speed[0].output, motor_pid_speed[1].output, motor_pid_speed[2].output, motor_pid_speed[3].output);
+		// speed_pid(3000);
+		// set_moto_current(motor_pid_speed[0].output, motor_pid_speed[1].output, motor_pid_speed[2].output, motor_pid_speed[3].output);
+		track_PID(3000);
 		HAL_Delay(10);
 		if (EQ == 0)
 		{
@@ -509,15 +510,16 @@ void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
           PLAY_CENTRAL_MOUNTAIN();
 		  break;
         }
-		// else if (i == 5)
-		// {
-		// 	PLAY_ARKNIGHTS();  // UART8没收到数据，执行播放明日方舟（只执行一次）
-		// 	break;
-		// }
+
+		else if (i == 5)
+		{
+			PLAY_ARKNIGHTS();  // UART8没收到数据，执行播放明日方舟（只执行一次）
+			break;
+		}
 	}
 
 
-	stop_time(200);
+	stop_time(2050);
 
 	// while(1)
     // {

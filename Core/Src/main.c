@@ -191,7 +191,7 @@ int main(void)
     }
     PLAY_STATE_READY();
     all_set();
-    HAL_Delay(1000);
+    // HAL_Delay(1000);
     // Servo1_SetAngle(20);    //机器人站起
 
     RGB_RED(9, 0);
@@ -201,15 +201,15 @@ int main(void)
     // OLED_ShowNum(48, 0, (int16_t)score, 4, 16, 1);           // 数字从 x=48 开始，4 位补零
 
 
-    one_to_two2();
-    two_to_three2();
-    three_to_four2();
-    four_to_five2();
+    //one_to_two2();
+    //two_to_three2();
+    //three_to_four2();
+    //four_to_five2();    //15-35'
     five_to_seven2();
-    seven_to_eight2();
-    eight_to_home();
+    //seven_to_eight2();  //50'
+    //eight_to_home();    //45'
 
-    // go_scenic_spot(100);
+    //go_scenic_spot(100);
     
     stop_time(1000);
 
@@ -231,7 +231,7 @@ int main(void)
     //   track_PID(8000);
     // }
 
-
+    // PLAY_ARKNIGHTS();
       // while (1)
       // {
       //   stop();
@@ -249,8 +249,8 @@ int main(void)
       //       OLED_ShowNum(48, 16, hsl[1], 3, 16, 1);
       //       OLED_ShowNum(96, 16, hsl[2], 3, 16, 1);
       //     }
-      //     OLED_Refresh();
-      //   }
+      //    OLED_Refresh();
+      //  }
       // }
 
     // go_forward(5000, 500);            // 到平台中间

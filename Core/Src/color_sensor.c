@@ -235,19 +235,19 @@ void get_color(void)
     HSL[2] = l_sum / 10;
 
     /* 颜色识别：绿、蓝、黑 */
-    if (HSL[0] > 100 && HSL[0] < 155) // 绿色
+    if (HSL[0] > 60 && HSL[0] < 100) // 绿色
     {
         RC.green_flag = 1;
         RC.blue_flag = 0;
         RC.black_flag = 0;
     }
-    else if (HSL[0] > 155 && HSL[0] < 180) // 蓝色
+    else if (HSL[0] > 155 && HSL[0] < 185) // 蓝色
     {
         RC.green_flag = 0;
         RC.blue_flag = 1;
         RC.black_flag = 0;
     }
-    else if ((HSL[0] > 180 && HSL[0] < 240) || HSL[0] == 0) // 黑色
+    else if ((HSL[0] > 115 && HSL[0] < 155) || HSL[0] == 0) // 黑色
     {
         RC.green_flag = 0;
         RC.blue_flag = 0;
