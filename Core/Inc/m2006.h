@@ -47,6 +47,7 @@ void tracking(float speed, exit_cond cond, uint16_t time);
 void tracking_expedite(float speed, exit_cond cond, uint16_t time);
 void stop_time(uint16_t time);
 void strike(void);
+void strike_line(void);
 void go_platform(uint8_t music);
 void go_trapezoidal_mountain(void);
 void go_scenic_spot(uint16_t time);

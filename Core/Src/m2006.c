@@ -414,8 +414,21 @@ void strike(void) // 撞击平台
 {
 	while (1)
 	{
-		// speed_pid(3000);
-		// set_moto_current(motor_pid_speed[0].output, motor_pid_speed[1].output, motor_pid_speed[2].output, motor_pid_speed[3].output);
+		speed_pid(3000);
+		set_moto_current(motor_pid_speed[0].output, motor_pid_speed[1].output, motor_pid_speed[2].output, motor_pid_speed[3].output);
+		// track_PID(3000);
+		HAL_Delay(10);
+		if (EQ == 0)
+		{
+			return;
+		}
+	}
+}
+
+void strike_line(void) // 撞击平台(有引导线)
+{
+	while (1)
+	{
 		track_PID(3000);
 		HAL_Delay(10);
 		if (EQ == 0)
@@ -424,6 +437,7 @@ void strike(void) // 撞击平台
 		}
 	}
 }
+
 void go_platform(uint8_t music) // 到平台
 {
 	strike(); // 撞击平台
@@ -459,7 +473,7 @@ void go_platform(uint8_t music) // 到平台
 	}
 	stop1();
 	do_platform();
-	turn_angle(turn_right, 160, 5000);  
+	turn_angle(turn_right, 158, 5000);  
 	stop1();
 }
 
@@ -476,7 +490,7 @@ void go_scenic_spot(uint16_t time) // 到景点,time为白线后运动时间
 	HAL_UART_Receive_IT(&huart8, &uart8_data, 1); // 重新开启串口8接收中断
 	Servo1_SetAngle(20);    //机器人站起
 	stop_time(200);
-	strike(); // 撞击平台
+	strike_line(); // 撞击平台
 	for (size_t i = 0; i <= 5; i++)  //后退500ms，没识别到就不识别了
 	{
 		go_forward(-1000,i *100);

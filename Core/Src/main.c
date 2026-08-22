@@ -181,7 +181,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    while (GQ == 0)
+    while(GQ == 1)
+    {
+      if(GQ == 0)
+        break;
+    }
+    while (GQ == 0) //放禁行板
     {
       if (EQ == 0)
       {
@@ -201,13 +206,13 @@ int main(void)
     // OLED_ShowNum(48, 0, (int16_t)score, 4, 16, 1);           // 数字从 x=48 开始，4 位补零
 
 
-    //one_to_two2();
-    //two_to_three2();
-    //three_to_four2();
-    //four_to_five2();    //15-35'
+    one_to_two2();
+    two_to_three2();
+    three_to_four2();
+    four_to_five2();    //15-35'
     five_to_seven2();
-    //seven_to_eight2();  //50'
-    //eight_to_home();    //45'
+    seven_to_eight2();  //50'
+    eight_to_home();    //45'
 
     //go_scenic_spot(100);
     
